@@ -16,7 +16,10 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.1'
   gem 'guard-rspec', '2.5.3'
+  gem 'rb-inotify', '0.9.0', :require => false
+  gem 'rb-fsevent', '0.9.3', :require => false
   gem 'spork', '0.9.2'
+  gem 'wdm', :platforms => [:mswin, :mingw], :require => false
 end
 
 group :assets do
