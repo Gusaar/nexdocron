@@ -6,16 +6,16 @@ gem 'devise', '2.2.3'
 gem 'haml', '4.0.2'
 gem 'jquery-rails', '2.2.1'
 gem 'mysql2', '0.3.11'
+gem "rspec-rails", '2.13.0', :group => [:test, :development]
 
 group :development do
   gem 'debugger'
 end
 
-group :development, :test do
+group :test do
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.1'
   gem 'guard-rspec', '2.5.3'
-  gem 'rspec-rails', '2.13.0'
   gem 'spork', '0.9.2'
 end
 
