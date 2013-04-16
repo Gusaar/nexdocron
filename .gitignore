@@ -13,3 +13,13 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore rvm config files
+.ruby-gemset
+.ruby-version
+
+# Ignore Gemfile.lock to avoid conflicts
+Gemfile.lock
+
+# Ignore database.yml
+/config/database.yml
