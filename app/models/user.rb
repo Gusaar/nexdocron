@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :user_type
 
   has_many :hours
+  has_many :projects, through: :user_projects
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
