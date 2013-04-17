@@ -1,0 +1,38 @@
+.group
+  = f.label :first_name, t("activerecord.attributes.user.first_name", :default => "First name"), :class => :label
+  = f.text_field :first_name, :class => 'text_field'
+  %span.description Ex: John
+.group
+  = f.label :last_name, t("activerecord.attributes.user.last_name", :default => "Last name"), :class => :label
+  = f.text_field :last_name, :class => 'text_field'
+  %span.description Ex: Smith
+.group
+  = f.label :username, t("activerecord.attributes.user.username", :default => "Username"), :class => :label
+  = f.text_field :username, :class => 'text_field'
+  %span.description Ex: Smithy
+.group
+  = f.label :email, t("activerecord.attributes.user.email", :default => "Email"), :class => :label
+  = f.text_field :email, :class => 'text_field'
+  %span.description Ex: example@softwarenextdoor.com
+.group
+  = f.label :skype_id, t("activerecord.attributes.user.skype_id", :default => "Skype"), :class => :label
+  = f.text_field :skype_id, :class => 'text_field'
+  %span.description Ex: john.smith
+.group
+  = f.label :phone, t("activerecord.attributes.user.phone", :default => "Phone"), :class => :label
+  = f.text_field :phone, :class => 'text_field'
+  %span.description Ex: 555-555-5555
+.group
+  = f.label :mobile, t("activerecord.attributes.user.mobile", :default => "Mobile"), :class => :label
+  = f.text_field :mobile, :class => 'text_field'
+  %span.description Ex: 555-555-5555
+.group
+  = f.label :rate, t("activerecord.attributes.user.rate", :default => "Rate"), :class => :label
+  = f.text_field :rate, :class => 'text_field'
+  %span.description Ex: 100.00
+.group.navform.wat-cf
+  %button.button{:type => "submit"}
+    = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")
+    = t("web-app-theme.save", :default => "Save")
+  %span.text_button_padding= t("web-app-theme.or", :default => "or")
+  = link_to t("web-app-theme.cancel", :default => "Cancel"), admin_users_path, :class => "text_button_padding link_button"

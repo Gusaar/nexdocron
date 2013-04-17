@@ -3,6 +3,10 @@ Nexdocron::Application.routes.draw do
 
   resources :dashboards, :only => [ :index ]
 
+  namespace :admin do
+    resources :users
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
