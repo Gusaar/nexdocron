@@ -9,7 +9,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :skype_id, :phone, :mobile, :rate
 
   validates :username, :uniqueness => { :allow_blank => true, :allow_nil => true }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 
 gem 'devise', '2.2.3'
+gem 'html2haml', '1.0.1'
 gem 'haml', '4.0.2'
 gem 'jquery-rails', '2.2.1'
 gem 'mysql2', '0.3.11'
