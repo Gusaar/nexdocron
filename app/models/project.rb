@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :invoicing_type
 
   has_many :hours
+  has_many :change_orders
 
   attr_accessible :client_id, :end_date, :invoicing_id, :name, :start_date, :total_hours
 end

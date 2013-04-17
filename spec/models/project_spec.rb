@@ -18,6 +18,7 @@ describe Project do
     it { should respond_to :client }
     it { should respond_to :invoicing_type }
     it { should respond_to :hours }
+    it { should respond_to :change_orders }
   end
 
 end
