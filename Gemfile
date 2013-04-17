@@ -7,6 +7,7 @@ gem 'haml', '4.0.2'
 gem 'jquery-rails', '2.2.1'
 gem 'mysql2', '0.3.11'
 gem "rspec-rails", '2.13.0', :group => [:test, :development]
+gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
 
 group :development do
   gem 'debugger'

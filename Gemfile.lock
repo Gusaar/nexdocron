@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/pilu/web-app-theme.git
+  revision: b7310fe5001ed03b965049f293fce3527ae98dae
+  specs:
+    web-app-theme (0.8.0)
+      rails (~> 3.2.0)
+      thor (~> 0.14)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -193,3 +201,4 @@ DEPENDENCIES
   spork (= 0.9.2)
   uglifier (>= 1.0.3)
   wdm
+  web-app-theme!
