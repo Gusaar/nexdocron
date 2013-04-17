@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  belongs_to :user_type
+
   has_many :hours
 
   # Include default devise modules. Others available are:
