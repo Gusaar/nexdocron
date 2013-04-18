@@ -3,12 +3,7 @@ require 'spec_helper'
 describe Hour do
   subject { FactoryGirl.build(:hour) }
 
-  specify { subject.should be_valid }
-
-  describe '#save' do
-    before(:each) { subject.save }
-    it { should be_persisted }
-  end
+  include_context :model_expectations
 
   describe '#respond_to?' do
     it { should respond_to :total_hours }

@@ -3,12 +3,7 @@ require 'spec_helper'
 describe InvoicingType do
   subject { FactoryGirl.build(:invoicing_type) }
 
-  specify { subject.should be_valid }
-
-  describe '#save' do
-    before(:each) { subject.save }
-    it { should be_persisted }
-  end
+  include_context :model_expectations
 
   describe '#respond_to?' do
     it { should respond_to :description }
