@@ -1,5 +1,5 @@
 class UserType < ActiveRecord::Base
   has_many :users
 
-  attr_accessible :description
+  attr_accessible :name, :description
 end
