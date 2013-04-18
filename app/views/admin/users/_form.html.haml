@@ -15,6 +15,9 @@
   = f.text_field :email, :class => 'text_field'
   %span.description Ex: example@softwarenextdoor.com
 .group
+  = f.label :user_type, t("activerecord.attributes.user.user_type", :default => "User Type"), :class => :label
+  = f.select :user_type, options_from_collection_for_select(@user_types, :id, :name), :class => 'select'
+.group
   = f.label :skype_id, t("activerecord.attributes.user.skype_id", :default => "Skype"), :class => :label
   = f.text_field :skype_id, :class => 'text_field'
   %span.description Ex: john.smith
