@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417224931) do
+ActiveRecord::Schema.define(:version => 20130418141756) do
 
   create_table "change_orders", :force => true do |t|
     t.decimal  "hours",      :precision => 5, :scale => 2
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20130417224931) do
     t.datetime "updated_at",                               :null => false
   end
 
+  add_index "change_orders", ["project_id"], :name => "index_change_orders_on_project_id"
+
   create_table "clients", :force => true do |t|
     t.string   "name"
     t.string   "contact_name"
@@ -31,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20130417224931) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "clients", ["contact_name"], :name => "index_clients_on_contact_name"
+  add_index "clients", ["name"], :name => "index_clients_on_name"
 
   create_table "hours", :force => true do |t|
     t.decimal  "total_hours",       :precision => 5, :scale => 2
@@ -46,7 +51,10 @@ ActiveRecord::Schema.define(:version => 20130417224931) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "name"
   end
+
+  add_index "invoicing_types", ["name"], :name => "index_invoicing_types_on_name"
 
   create_table "projects", :force => true do |t|
     t.datetime "start_date"
@@ -59,6 +67,10 @@ ActiveRecord::Schema.define(:version => 20130417224931) do
     t.integer  "invoicing_type_id"
   end
 
+  add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+  add_index "projects", ["invoicing_type_id"], :name => "index_projects_on_invoicing_type_id"
+  add_index "projects", ["name"], :name => "index_projects_on_name"
+
   create_table "user_projects", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -66,11 +78,17 @@ ActiveRecord::Schema.define(:version => 20130417224931) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "user_projects", ["project_id"], :name => "index_user_projects_on_project_id"
+  add_index "user_projects", ["user_id"], :name => "index_user_projects_on_user_id"
+
   create_table "user_types", :force => true do |t|
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "name"
   end
+
+  add_index "user_types", ["name"], :name => "index_user_types_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                :default => "", :null => false
