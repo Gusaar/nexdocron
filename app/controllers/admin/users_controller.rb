@@ -10,12 +10,12 @@ class Admin::UsersController < AdminController
   end
 
   def create
-    @user = User.find_by_id(params[:id])
-    user_type = params[:user][:user_type_id]
-    params[:user].delete(:user_type_id)
+    @user = User.new
+    user_type = params[:user][:user_type]
+    params[:user].delete(:user_type)
+    @user.user_type_id = user_type
 
     @user.attributes = params[:user]
-    @user.user_type_id = user_type
 
     if @user.valid? && @user.save
       redirect_to admin_users_path, :notice => "User created successfully."
@@ -34,19 +34,27 @@ class Admin::UsersController < AdminController
 
   def update
     @user = User.find_by_id(params[:id])
-    user_type = params[:user][:user_type_id]
-    params[:user].delete(:user_type_id)
+
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    unless @user.user_type_id == params[:user][:user_type]
+      user_type = params[:user][:user_type]
+      params[:user].delete(:user_type)
+      @user.user_type_id = user_type
+    end
 
     @user.attributes = params[:user]
-    @user.user_type_id = user_type
 
     if @user.valid? && @user.save
       redirect_to admin_users_path, :notice => "User updated successfully."
     else
       @user_types = UserType.all
 
-      flash[:error] = "User couldn't be updated."
-      render edit_admin_user_path(@user.id)
+      flash[:error] = "User couldn't be updated. #{@user.errors.inspect}"
+      render :action => :edit, :id => @user.id
     end
   end
 

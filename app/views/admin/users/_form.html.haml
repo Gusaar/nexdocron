@@ -15,6 +15,12 @@
   = f.text_field :email, :class => 'text_field'
   %span.description Ex: example@softwarenextdoor.com
 .group
+  = f.label :password, t("activerecord.attributes.user.password", :default => "Password"), :class => :label
+  = f.password_field :password, :class => 'password_field'
+.group
+  = f.label :password_confirmation, t("activerecord.attributes.user.password_confirmation", :default => "Password Confirmation"), :class => :label
+  = f.password_field :password_confirmation, :class => 'password_field'
+.group
   = f.label :user_type, t("activerecord.attributes.user.user_type", :default => "User Type"), :class => :label
   = f.select :user_type, options_from_collection_for_select(@user_types, :id, :name), :class => 'select'
 .group
