@@ -30,7 +30,7 @@ describe "Admin::Users" do
 
   describe "PUT /admin/users/ID", :type => :feature do
     it "should update an user" do
-      user = User.last
+      user = User.last || FactoryGirl.create(:user)
       visit edit_admin_user_path(user.id)
       expect(page).to have_content('Edit User')
       fill_in 'First name', with: "Test"

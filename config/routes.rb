@@ -5,6 +5,7 @@ Nexdocron::Application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :clients
   end
 
   # The priority is based upon order of creation:

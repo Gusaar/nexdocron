@@ -53,7 +53,7 @@ class Admin::UsersController < AdminController
     else
       @user_types = UserType.all
 
-      flash[:error] = "User couldn't be updated. #{@user.errors.inspect}"
+      flash[:error] = "User couldn't be updated."
       render :action => :edit, :id => @user.id
     end
   end
