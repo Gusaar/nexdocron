@@ -13,4 +13,24 @@ describe Hour do
     it { should respond_to :user }
   end
 
+  describe '#total_hours' do
+    it 'is required' do
+      subject.total_hours = nil
+      subject.should have(2).error_on(:total_hours)
+      subject.errors.messages[:total_hours].should include('can\'t be blank')
+    end
+
+    it 'is a number' do
+      subject.total_hours = 'A word'
+      subject.should have(1).error_on(:total_hours)
+      subject.errors.messages[:total_hours].should include('is not a number')
+    end
+
+    it 'is greater than zero' do
+      subject.total_hours = 0
+      subject.should have(1).error_on(:total_hours)
+      subject.errors.messages[:total_hours].should include('must be greater than 0')
+    end
+  end
+
 end

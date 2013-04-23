@@ -22,6 +22,7 @@ group :test do
   gem 'rb-fsevent', '0.9.3', :require => false
   gem 'spork', '0.9.2'
   gem 'wdm', :platforms => [:mswin, :mingw], :require => false
+  gem 'ffaker', '1.15.0'
 end
 
 group :assets do

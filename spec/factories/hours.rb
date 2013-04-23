@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :hour do
+    total_hours 3.50
   end
 end
