@@ -6,3 +6,7 @@ User.find_or_create_by_email(:email                 => "admin@softwarenextdoor.c
 puts "Creating User Types"
 UserType.find_or_create_by_name(:name => "Admin")
 UserType.find_or_create_by_name(:name => "Developer")
+
+puts "Creating Invoicing Types"
+InvoicingType.find_or_create_by_name(:name => "Type 1")
+InvoicingType.find_or_create_by_name(:name => "Type 2")
