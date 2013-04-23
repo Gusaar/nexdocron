@@ -32,4 +32,12 @@ describe "Admin::Clients" do
       expect(page).to have_content('Client updated successfully.')
     end
   end
+
+  describe "GET /admin/clients/ID", :type => :feature do
+    it "should show client data" do
+      client = Client.last || FactoryGirl.create(:client)
+      visit admin_client_path(client.id)
+      expect(page).to have_content(client.name)
+    end
+  end
 end

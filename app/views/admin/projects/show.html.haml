@@ -1,0 +1,42 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first= link_to "#{t("web-app-theme.list", :default => "List")}", admin_projects_path
+      %li= link_to "#{t("web-app-theme.new", :default => "New")}", new_admin_project_path
+      %li.active= link_to "#{t("web-app-theme.show", :default => "Show")}", admin_project_path
+  .content
+    .inner
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.start_date", :default => t("activerecord.labels.start_date", :default => "Start date"))
+          \:
+        = @project.start_date
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.end_date", :default => t("activerecord.labels.end_date", :default => "End date"))
+          \:
+        = @project.end_date
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.name", :default => t("activerecord.labels.name", :default => "Name"))
+          \:
+        = @project.name
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.total_hours", :default => t("activerecord.labels.total_hours", :default => "Total hours"))
+          \:
+        = @project.total_hours
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.client_id", :default => t("activerecord.labels.client_id", :default => "Client"))
+          \:
+        = @project.client_id
+      %p
+        %b
+          = t("activerecord.attributes.admin_project.invoicing_type_id", :default => t("activerecord.labels.invoicing_type_id", :default => "Invoicing type"))
+          \:
+        = @project.invoicing_type_id
+      .wat-cf
+        = link_to image_tag("web-app-theme/icons/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}") + " " + t("web-app-theme.edit", :default=> "Edit"), edit_admin_project_path(@project), :class => "button"
+        = link_to image_tag("web-app-theme/icons/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}") + " " + t("web-app-theme.delete", :default => "Delete"), admin_project_path(@project), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}"
+- content_for :sidebar, render(:partial => 'sidebar')

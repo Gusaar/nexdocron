@@ -41,4 +41,12 @@ describe "Admin::Users" do
       expect(page).to have_content('User updated successfully.')
     end
   end
+
+  describe "GET /admin/users/ID", :type => :feature do
+    it "should show user data" do
+      user = User.last || FactoryGirl.create(:user)
+      visit admin_user_path(user.id)
+      expect(page).to have_content(user.email)
+    end
+  end
 end

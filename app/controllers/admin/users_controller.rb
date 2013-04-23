@@ -11,8 +11,8 @@ class Admin::UsersController < AdminController
 
   def create
     @user = User.new
-    user_type = params[:user][:user_type]
-    params[:user].delete(:user_type)
+    user_type = params[:user][:user_type_id]
+    params[:user].delete(:user_type_id)
     @user.user_type_id = user_type
 
     @user.attributes = params[:user]
@@ -40,9 +40,9 @@ class Admin::UsersController < AdminController
       params[:user].delete(:password_confirmation)
     end
 
-    unless @user.user_type_id == params[:user][:user_type]
-      user_type = params[:user][:user_type]
-      params[:user].delete(:user_type)
+    unless @user.user_type_id == params[:user][:user_type_id]
+      user_type = params[:user][:user_type_id]
+      params[:user].delete(:user_type_id)
       @user.user_type_id = user_type
     end
 
