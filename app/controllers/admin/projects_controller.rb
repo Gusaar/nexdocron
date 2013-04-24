@@ -5,8 +5,7 @@ class Admin::ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @clients = Client.all
-    @invoicing_types = InvoicingType.all
+    init_variables
   end
 
   def create
@@ -17,8 +16,7 @@ class Admin::ProjectsController < ApplicationController
     if @project.valid? && @project.save
       redirect_to admin_projects_path, :notice => "Project created successfully."
     else
-      @clients = Client.all
-      @invoicing_types = InvoicingType.all
+      init_variables
       flash[:error] = "Project couldn't be created."
       render new_admin_project_path
     end
@@ -26,8 +24,7 @@ class Admin::ProjectsController < ApplicationController
 
   def edit
     @project = Project.find_by_id(params[:id])
-    @clients = Client.all
-    @invoicing_types = InvoicingType.all
+    init_variables
   end
 
   def update
@@ -38,8 +35,7 @@ class Admin::ProjectsController < ApplicationController
     if @project.valid? && @project.save
       redirect_to admin_projects_path, :notice => "Project updated successfully."
     else
-      @clients = Client.all
-      @invoicing_types = InvoicingType.all
+      init_variables
       flash[:error] = "Project couldn't be updated."
       render :action => :edit, :id => @project.id
     end
@@ -58,5 +54,13 @@ class Admin::ProjectsController < ApplicationController
       flash[:error] = "Project couldn't be destroyed."
       render admin_project_path(@project.id)
     end
+  end
+
+  private
+
+  def init_variables
+    @clients = Client.all
+    @users = User.all
+    @invoicing_types = InvoicingType.all
   end
 end

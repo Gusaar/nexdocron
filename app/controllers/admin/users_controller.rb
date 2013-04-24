@@ -6,7 +6,7 @@ class Admin::UsersController < AdminController
 
   def new
     @user = User.new
-    @user_types = UserType.all
+    init_variables
   end
 
   def create
@@ -20,7 +20,7 @@ class Admin::UsersController < AdminController
     if @user.valid? && @user.save
       redirect_to admin_users_path, :notice => "User created successfully."
     else
-      @user_types = UserType.all
+      init_variables
 
       flash[:error] = "User couldn't be created."
       render new_admin_user_path
@@ -29,7 +29,7 @@ class Admin::UsersController < AdminController
 
   def edit
     @user = User.find_by_id(params[:id])
-    @user_types = UserType.all
+    init_variables
   end
 
   def update
@@ -51,7 +51,7 @@ class Admin::UsersController < AdminController
     if @user.valid? && @user.save
       redirect_to admin_users_path, :notice => "User updated successfully."
     else
-      @user_types = UserType.all
+      init_variables
 
       flash[:error] = "User couldn't be updated."
       render :action => :edit, :id => @user.id
@@ -71,5 +71,12 @@ class Admin::UsersController < AdminController
       flash[:error] = "User couldn't be destroyed."
       render admin_user_path(@user.id)
     end
+  end
+
+  private
+
+  def init_variables
+    @user_types = UserType.all
+    @projects = Project.all
   end
 end
