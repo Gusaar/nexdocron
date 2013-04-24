@@ -1,14 +1,17 @@
 .group
+  = f.label :name, t("activerecord.attributes.project.name", :default => "Name"), :class => :label
+  = f.text_field :name, :class => 'text_field'
+  %span.description Ex: a simple text
+.group
+  = f.label :user_ids, t("activerecord.attributes.project.users", :default => "Users"), :class => :label
+  = f.select :user_ids, options_from_collection_for_select(@users, :id, :username), {}, { :multiple => true, :class => 'select' }
+.group
   = f.label :start_date, t("activerecord.attributes.project.start_date", :default => "Start date"), :class => :label
   = f.datetime_select :start_date, :class => 'datetime_select'
   %span.description Ex: a simple text
 .group
   = f.label :end_date, t("activerecord.attributes.project.end_date", :default => "End date"), :class => :label
   = f.datetime_select :end_date, :class => 'datetime_select'
-  %span.description Ex: a simple text
-.group
-  = f.label :name, t("activerecord.attributes.project.name", :default => "Name"), :class => :label
-  = f.text_field :name, :class => 'text_field'
   %span.description Ex: a simple text
 .group
   = f.label :total_hours, t("activerecord.attributes.project.total_hours", :default => "Total hours"), :class => :label
