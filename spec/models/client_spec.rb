@@ -64,5 +64,10 @@ describe Client do
         subject.should have(1).error_on(:contact_email)
       end
     end
+
+    it 'has a correct format' do
+      subject.contact_email = 'snd@mail.com'
+      subject.should be_valid
+    end
   end
 end
