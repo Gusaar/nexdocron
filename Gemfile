@@ -9,6 +9,7 @@ gem 'jquery-rails', '2.2.1'
 gem 'mysql2', '0.3.11'
 gem "rspec-rails", '2.13.0', :group => [:test, :development]
 gem 'web-app-theme', :git =>'git://github.com/pilu/web-app-theme.git'
+gem 'validates_phone_number', '2.0.1'
 
 group :development do
   gem 'debugger'
