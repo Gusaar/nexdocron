@@ -17,6 +17,7 @@ describe "Admin::Clients" do
       visit new_admin_client_path
       expect(page).to have_content('New Client')
       fill_in 'Name', with: "Test"
+      fill_in 'Contact email', with: Faker::Internet.email
       click_button 'Save'
       expect(page).to have_content('Client created successfully.')
     end
