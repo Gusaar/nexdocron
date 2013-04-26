@@ -1,12 +1,18 @@
 Nexdocron::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
-  resources :dashboards, :only => [ :index ]
+  resources :dashboards, only: [ :index ]
 
   namespace :admin do
     resources :clients
     resources :projects
     resources :users
+  end
+
+  resources :hours, only: [ :index ], path: :time do
+    collection do
+      post 'update_week'
+    end
   end
 
   # The priority is based upon order of creation:
@@ -58,7 +64,7 @@ Nexdocron::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'dashboards#index'
+  root :to => 'hours#index'
 
   # See how all your routes lay out with "rake routes"
 

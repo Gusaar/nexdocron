@@ -1,0 +1,11 @@
+.calendar
+  %ul
+    - %w{ Sun Mo Tu We Th Fr Sa }.each_with_index do |day, i|
+      %li{:class => ("selected" if @selected == @week_days[i]) }
+        .header
+          .day_name
+            = day
+          .day_number
+            = @week_days[i] unless @week_days[i] == 0
+        .body
+          

@@ -1,0 +1,27 @@
+.left_controls
+  = label_tag :project, "Project: "
+  = select_tag :project, options_from_collection_for_select(current_user.projects, :id, :name), :prompt => "- Select a Project -"
+
+  #datepicker
+
+.right_panel
+  = render partial: "calendar"
+
+= render partial: "modal"
+
+
+  
+:javascript
+  $(function() {
+    $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy', onSelect: function(dateStr) {
+      $.post('/time/update_week', { date: dateStr }, function(data) {}, 'script');
+    }});
+  });
+
+  $('.time_set').on('click', function(data) {
+    $('.modal').show();
+  })
+
+  $('.modal .modal_button').on('click', function(data) {
+    $('.modal').hide();
+  })

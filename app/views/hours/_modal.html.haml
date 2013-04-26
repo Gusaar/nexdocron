@@ -1,0 +1,12 @@
+.modal
+  .overlay
+  .window
+    .hours
+      %span
+        Hours:
+      = text_field_tag :hours, ''
+    .description
+      %span.description
+        Description:
+      = text_area_tag :description, ''
+    = link_to 'Update', '#', :class => 'modal_button button'

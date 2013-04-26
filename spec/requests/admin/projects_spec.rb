@@ -19,6 +19,7 @@ describe "Admin::Projects" do
       visit new_admin_project_path
       expect(page).to have_content('New Project')
       fill_in 'Name', with: "Test"
+      select(User.first.username, :from => "Users")
       click_button 'Save'
       expect(page).to have_content('Project created successfully.')
     end
