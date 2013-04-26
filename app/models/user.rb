@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :skype_id, :phone, :mobile, :rate, :project_ids
 
   validates :username, :uniqueness => { :allow_blank => true, :allow_nil => true }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :phone, phone_number: { leading_1: true }, allow_blank: true, allow_nil: true
+  validates :mobile, phone_number: { leading_1: true }, allow_blank: true, allow_nil: true
+  validates :user_type, presence: true
+  validates :rate, numericality: { greater_than: 0 }, allow_blank: true, allow_nil: true
 
   def full_name
     "#{first_name} #{last_name}"
