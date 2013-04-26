@@ -55,7 +55,7 @@ describe Hour do
     end
 
     it 'has the correct format' do
-      subject.date = '2001-02-03T04:05:06+07:00'.to_datetime
+      subject.date = '2001-02-03'.to_datetime
       subject.should have(0).error_on(:date)
     end
   end

@@ -2,5 +2,9 @@
 
 FactoryGirl.define do
   factory :change_order do
+    sequence(:hours) { |n| n + 1 }
+    date Time.zone.now
+    end_date 1.month.from_now
+    project
   end
 end
