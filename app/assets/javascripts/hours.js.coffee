@@ -48,3 +48,34 @@ $(document).on 'click',
         $('#description').val(data.description)
         $('.modal').show()
       , 'json'
+
+class update_week
+  constructor: (date) ->
+    $.post '/time/update_week', 
+      { date: date, project_id: $('#project').val() }, 
+      (->), 
+      'script'
+
+class get_datepicker_date
+  constructor: ->
+    date = ""
+    date = $('.ui-state-active').text() + get_datepicker_month_and_year()
+    return(date)
+
+class get_datepicker_month_and_year
+  constructor: ->
+    months = {
+      January: 1,
+      February: 2,
+      March: 3,
+      April: 4,
+      May: 5,
+      June: 6,
+      July: 7,
+      August: 8,
+      September: 9,
+      October: 10,
+      November: 11,
+      December: 12
+    };
+    return("-" + months[$('.ui-datepicker-month').text()] + "-" + $('.ui-datepicker-year').text())

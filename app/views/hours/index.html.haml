@@ -10,35 +10,3 @@
   = render partial: "calendar"
 
 = render partial: "modal"
-
-:javascript
-  function update_week(date) {
-    $.post('/time/update_week', { date: date, project_id: $('#project').val() }, function() {}, 'script');
-  }
-
-  function get_datepicker_date() {
-    var date = "";
-    
-    date = $('.ui-state-active').text() + get_datepicker_month_and_year();
-
-    return(date);
-  }
-
-  function get_datepicker_month_and_year() {
-    var months = {
-      January: 1,
-      February: 2,
-      March: 3,
-      April: 4,
-      May: 5,
-      June: 6,
-      July: 7,
-      August: 8,
-      September: 9,
-      October: 10,
-      November: 11,
-      December: 12
-    };
-
-    return("-" + months[$('.ui-datepicker-month').text()] + "-" + $('.ui-datepicker-year').text());
-  }
