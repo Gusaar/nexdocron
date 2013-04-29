@@ -1,11 +1,14 @@
 .calendar
   %ul
     - %w{ Sun Mo Tu We Th Fr Sa }.each_with_index do |day, i|
-      %li{:class => ("selected" if @selected == @week_days[i]) }
+      %li
         .header
           .day_name
             = day
           .day_number
-            = @week_days[i] unless @week_days[i] == 0
+            = label_tag(@week_days[i]) unless @week_days[i] == 0
         .body
+          - if @project_hours
+            - @project_hours.select{|h| h.date.day == @week_days[i]}.each do |ph|
+              = render :partial => 'time_set', :locals => { :hour => ph }
           

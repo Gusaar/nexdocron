@@ -1,6 +1,12 @@
 .modal
   .overlay
   .window
+    = hidden_field_tag :hour_id
+    .date
+      %span.label
+        Date:
+      %span.date
+    .clear
     .hours
       %span
         Hours:
@@ -10,3 +16,4 @@
         Description:
       = text_area_tag :description, ''
     = link_to 'Update', '#', :class => 'modal_button button'
+    = link_to 'Cancel', '#', :class => 'cancel_button button'

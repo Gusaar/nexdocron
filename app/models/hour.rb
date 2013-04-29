@@ -8,5 +8,5 @@ class Hour < ActiveRecord::Base
   validates :project, presence: true
   validates :user, presence: true
 
-  attr_accessible :date, :project_id, :tasks_description, :total_hours, :user_id
+  attr_accessible :date, :project, :tasks_description, :total_hours, :user_id
 end

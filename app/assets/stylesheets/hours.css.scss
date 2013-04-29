@@ -14,6 +14,11 @@
   #datepicker {
     margin-top: 20px;
   }
+
+  #add_task_button {
+    margin-top: 20px;
+    float: right;
+  }
 }
 
 .right_panel .calendar {
@@ -139,8 +144,17 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 
-    .hours {
+    div.date {
       margin-top: 10px;
+
+      span.label {
+        float: left;
+      }
+
+      span.date {
+        float: right;
+        margin-right: 10px;
+      }
     }
 
     span {
@@ -156,6 +170,7 @@
       width: 50px;
       float: right;
       margin-right: 10px;
+      text-align: right;
     }
 
     textarea {

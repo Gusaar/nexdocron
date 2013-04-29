@@ -1,8 +1,9 @@
 .time_set
+  = hidden_field_tag :time_set_hour_id, hour.id, :class => 'time_set_hour_id'
   .hours
     %span.title
       Hr
     %span.hour
-      8
+      = hour.total_hours
   .description
-    = "Something bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla".truncate(45)
+    = hour.tasks_description.truncate(45)

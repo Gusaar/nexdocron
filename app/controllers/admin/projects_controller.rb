@@ -15,7 +15,6 @@ class Admin::ProjectsController < ApplicationController
     if @project.valid? && @project.save
       redirect_to admin_projects_path, :notice => "Project created successfully."
     else
-      raise @project.errors.full_messages.inspect
       init_variables
       flash[:error] = "Project couldn't be created."
       render new_admin_project_path

@@ -11,7 +11,9 @@ Nexdocron::Application.routes.draw do
 
   resources :hours, only: [ :index ], path: :time do
     collection do
+      post 'get_hours_info'
       post 'update_week'
+      post 'update_hour'
     end
   end
 
