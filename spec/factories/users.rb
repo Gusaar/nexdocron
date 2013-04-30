@@ -12,13 +12,14 @@ FactoryGirl.define do
     sequence(:username) { |n| "username_#{n}" }
     rate 10.5
     user_type
+
+    factory :admin_user do
+      username "Admin"
+      sequence(:email) { |n| "admin_test_#{n}@example.com" }
+      password "password"
+      password_confirmation "password"
+      association :user_type, name: "Admin"
+    end
   end
 
-  factory :admin_user, class: User do
-    username "Admin"
-    sequence(:email) { |n| "admin_test_#{n}@example.com" }
-    password "password"
-    password_confirmation "password"
-    association :user_type, name: "Admin"
-  end
 end
