@@ -20,6 +20,7 @@ describe "Admin::Projects" do
       expect(page).to have_content('New Project')
       fill_in 'Name', with: "Test"
       select(User.first.username, :from => "Users")
+      fill_in 'Total hours', with: 50
       click_button 'Save'
       expect(page).to have_content('Project created successfully.')
     end
