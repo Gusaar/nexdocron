@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
+  let!(:user_type) { FactoryGirl.create(:user_type) }
   before (:each) do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, user_type: user_type)
     sign_in(user)
   end
 
@@ -36,12 +37,12 @@ describe Admin::UsersController do
     context "with valid attributes" do
       it "creates a new user" do
         expect{
-          post :create, user: FactoryGirl.attributes_for(:user)
+          post :create, user: FactoryGirl.attributes_for(:user).merge(user_type_id: user_type)
         }.to change(User,:count).by(1)
       end
       
       it "redirects to the new user" do
-        post :create, user: FactoryGirl.attributes_for(:user)
+        post :create, user: FactoryGirl.attributes_for(:user).merge(user_type_id: user_type)
         response.should redirect_to admin_users_path
       end
     end
@@ -73,14 +74,14 @@ describe Admin::UsersController do
     
       it "changes @user's attributes" do
         put :update, id: @user, 
-          user: FactoryGirl.attributes_for(:user, first_name: "Larry", last_name: "Smith")
+          user: FactoryGirl.attributes_for(:user, first_name: "Larry", last_name: "Smith").merge(user_type_id: user_type)
         @user.reload
         @user.first_name.should eq("Larry")
         @user.last_name.should eq("Smith")
       end
     
       it "redirects to the updated user" do
-        put :update, id: @user, user: FactoryGirl.attributes_for(:user)
+        put :update, id: @user, user: FactoryGirl.attributes_for(:user).merge(user_type_id: user_type)
         response.should redirect_to admin_users_path
       end
     end
