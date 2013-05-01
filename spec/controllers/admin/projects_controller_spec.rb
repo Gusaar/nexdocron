@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Admin::ProjectsController do
+  let!(:client) { FactoryGirl.create(:client) }
   before (:each) do
     user = FactoryGirl.create(:user)
     sign_in(user)
@@ -36,12 +37,12 @@ describe Admin::ProjectsController do
     context "with valid attributes" do
       it "creates a new project" do
         expect{
-          post :create, project: FactoryGirl.attributes_for(:project)
+          post :create, project: FactoryGirl.attributes_for(:project).merge(client_id: client)
         }.to change(Project,:count).by(1)
       end
       
       it "redirects to the new project" do
-        post :create, project: FactoryGirl.attributes_for(:project)
+        post :create, project: FactoryGirl.attributes_for(:project).merge(client_id: client)
         response.should redirect_to admin_projects_path
       end
     end
