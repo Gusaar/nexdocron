@@ -4,7 +4,13 @@
 
   #datepicker
 
-  = link_to 'Add Task', '#', :class => "button", :id => "add_task_button"
+  .bottom
+    .total_hours
+      %span
+        Month Hours:
+      %span.month_hours{ class: month_color_by_hours(@month_hours, @month_total_hours) }
+        = @month_hours
+    = link_to 'Add Task', '#', :class => "button", :id => "add_task_button"
 
 .right_panel
   = render partial: "calendar"

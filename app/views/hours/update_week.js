@@ -6,3 +6,4 @@ $('.calendar ul li').each(function(index){
     $(self).addClass('selected');
   }
 });
+$('.month_hours').html("<%= @month_hours %>");

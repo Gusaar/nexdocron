@@ -15,3 +15,7 @@
  .clear {
   clear: both;
  }
+
+ .clear_left {
+  clear: left;
+ }

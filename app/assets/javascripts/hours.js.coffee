@@ -6,6 +6,7 @@ $(document).ready ->
       $('#description').val("")
       date = get_datepicker_date()
       $('.modal .date span.date').html(date)
+      clear_modal_errors()
       $('.modal').show()
     else 
       alert("You need to select a Project.")
@@ -18,11 +19,12 @@ $(document).ready ->
     $('.modal').hide()
 
   $('.modal .modal_button').click ->
-    $.post '/time/update_hour', 
-      { hour_id: $('#hour_id').val(), date: $('div.date span.date').text(), hours: $('#hours').val(), description: $('#description').val(), project_id: $('#project').val() }, 
-      (->)
-      , 'script'
-    $('.modal').hide()
+    if validates_modal_fields()
+      $.post '/time/update_hour', 
+        { hour_id: $('#hour_id').val(), date: $('div.date span.date').text(), hours: $('#hours').val(), description: $('#description').val(), project_id: $('#project').val() }, 
+        (->)
+        , 'script'
+      $('.modal').hide()
 
   $('#project').val("")
 
@@ -37,7 +39,7 @@ $(document).on 'click',
   '.time_set', 
   ->
     self = this
-    date = $(self).parent().parent().find('.header .day_number label').html() + get_datepicker_month_and_year()
+    date = $(self).parent().parent().parent().find('.header .day_number label').html() + get_datepicker_month_and_year()
     hour_id = $(self).children('.time_set_hour_id').val()
     $('#hour_id').val(hour_id)
     $('.modal .date span.date').html(date)
@@ -46,6 +48,7 @@ $(document).on 'click',
       (data) ->
         $('#hours').val(data.hours)
         $('#description').val(data.description)
+        clear_modal_errors()
         $('.modal').show()
       , 'json'
 
@@ -79,3 +82,28 @@ class get_datepicker_month_and_year
       December: 12
     };
     return("-" + months[$('.ui-datepicker-month').text()] + "-" + $('.ui-datepicker-year').text())
+
+class validates_modal_fields
+  constructor: ->
+    clear_modal_errors()
+    flag = true
+    if $('.modal #description').val() == ""
+      $('.modal #description').addClass("error")
+      $('.modal .description div.errors').html("Description can't be blank.")
+      flag = false
+    if $('.modal #hours').val() == ""
+      $('.modal #hours').addClass("error")
+      $('.modal .hours div.errors').html("Hour can't be blank.")
+      flag = false
+    else if !$.isNumeric($('.modal #hours').val())
+      $('.modal #hours').addClass("error")
+      $('.modal .hours div.errors').html("Hour must be numeric.")
+      flag = false
+    return(flag)
+
+class clear_modal_errors
+  constructor: ->
+    $('.modal #description').removeClass("error")
+    $('.modal .description div.errors').html("")
+    $('.modal #hours').removeClass("error")
+    $('.modal .hours div.errors').html("")

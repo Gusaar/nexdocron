@@ -1,14 +1,25 @@
 .calendar
   %ul
     - %w{ Sun Mo Tu We Th Fr Sa }.each_with_index do |day, i|
-      %li
+      - week_hours = @project_hours.select{|h| h.date.day == @week_days[i]} if @project_hours
+      - if @week_total_hours
+        - wth = @week_total_hours[@week_days[i].to_s] || []
+
+      %li{ class: "list_#{@week_days[i]}"}
         .header
           .day_name
             = day
           .day_number
             = label_tag(@week_days[i]) unless @week_days[i] == 0
         .body
-          - if @project_hours
-            - @project_hours.select{|h| h.date.day == @week_days[i]}.each do |ph|
-              = render :partial => 'time_set', :locals => { :hour => ph }
-          
+          - if week_hours
+            - week_hours.each do |ph|
+              %div{ class: "time_set_container_#{ph.id}" }
+                = render :partial => 'time_set', :locals => { :hour => ph }
+        - if @week_days[i] != 0
+          .footer{ class: (footer_color_by_hours(wth, "#{@week_days[i]}/#{@date.month}/#{@date.year}") if @week_total_hours && !%w{ Sun Sa }.include?(day)) }
+            %span
+              Day Hrs:
+            %span.hours
+              = wth.collect{|h| h.total_hours}.sum.to_f if wth
+            

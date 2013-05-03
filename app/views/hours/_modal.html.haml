@@ -11,9 +11,14 @@
       %span
         Hours:
       = text_field_tag :hours, ''
+      .errors
+    .clear_left
     .description
       %span.description
         Description:
+      .errors
       = text_area_tag :description, ''
+    .clear
     = link_to 'Update', '#', :class => 'modal_button button'
     = link_to 'Cancel', '#', :class => 'cancel_button button'
+    .clear
