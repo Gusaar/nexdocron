@@ -1,7 +1,7 @@
 module HoursHelper
 
   def footer_color_by_hours(hours, date)
-    total = hours.collect{|h| h.total_hours}.sum.to_f
+    total = hours.to_f
     d = Date.parse(date)
 
     if d <= Date.today

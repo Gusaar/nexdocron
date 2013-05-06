@@ -17,7 +17,7 @@ class HoursController < ApplicationController
   end
 
   def update_hour
-    date = Date.parse(params['date'])
+    @date = Date.parse(params['date'])
     @created = false
     if params[:project_id] && @project = Project.find_by_id(params[:project_id])
       if params[:hour_id] && @hour = current_user.hours.find_by_id(params[:hour_id])
@@ -28,8 +28,11 @@ class HoursController < ApplicationController
         @hour = current_user.hours.create(:project => @project,
                                           :tasks_description => params[:description],
                                           :total_hours      => params[:hours],
-                                          :date             => date)
+                                          :date             => @date)
       end
+      projects = current_user.projects
+      get_month_hours(projects, @date.beginning_of_month, @date.end_of_month)
+      get_week_hours(@date, params[:project_id], projects)
     end
   end
 
@@ -63,8 +66,8 @@ class HoursController < ApplicationController
         @project_hours << h
       end
 
-      @week_total_hours["#{h.date.day}"] ||= []
-      @week_total_hours["#{h.date.day}"] << h
+      @week_total_hours["#{h.date.day}"] ||= 0
+      @week_total_hours["#{h.date.day}"] += h.total_hours
     end
   end
 

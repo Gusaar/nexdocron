@@ -7,3 +7,5 @@ $('.calendar ul li').each(function(index){
   }
 });
 $('.month_hours').html("<%= @month_hours %>");
+$('.month_hours').removeClass('warning good over');
+$('.month_hours').addClass('<%= month_color_by_hours(@month_hours, @month_total_hours) %>');

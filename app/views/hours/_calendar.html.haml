@@ -3,7 +3,7 @@
     - %w{ Sun Mo Tu We Th Fr Sa }.each_with_index do |day, i|
       - week_hours = @project_hours.select{|h| h.date.day == @week_days[i]} if @project_hours
       - if @week_total_hours
-        - wth = @week_total_hours[@week_days[i].to_s] || []
+        - wth = @week_total_hours[@week_days[i].to_s] || 0
 
       %li{ class: "list_#{@week_days[i]}"}
         .header
@@ -21,5 +21,5 @@
             %span
               Day Hrs:
             %span.hours
-              = wth.collect{|h| h.total_hours}.sum.to_f if wth
+              = wth.to_f if wth
             
