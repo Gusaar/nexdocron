@@ -1,7 +1,7 @@
 .left_panel
   .left_controls
     = label_tag :project, "Project: "
-    = select_tag :project, options_from_collection_for_select(current_user.projects, :id, :name), :prompt => "- Select a Project -"
+    = select_tag :project, ('<option value="all">All Projects</option>' + options_from_collection_for_select(current_user.projects, :id, :name)).html_safe
 
     #datepicker
 

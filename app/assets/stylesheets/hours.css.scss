@@ -43,8 +43,18 @@
       }
 
       #add_task_button {
-        margin-top: 20px;
+        padding: 5px;
+        background-color: #DDD;
+        color: #666;
         float: right;
+        margin-top: 14px;
+        font-weight: bolder;
+        display: none;
+        
+        &:hover {
+          background-color: #666;
+          color: #DDD;
+        }
       }
     }
   }
@@ -146,6 +156,38 @@
           border-radius: 5px;
           margin: 3px 0 0 3px;
           cursor: pointer;
+          position: relative;
+
+          &:hover {
+            .close {
+              display: block;
+            }
+          }
+
+          .close {
+            width: 15px;
+            height: 15px;
+            border: 2px solid black;
+            float: right;
+            position: absolute;
+            bottom: 75px;
+            left: 74px;
+            background-color: #FFF;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            display: none;
+            text-decoration: none;
+
+            &:hover {
+              background-color: #666;
+              color: #DDD;
+            }
+
+            span {
+              font-weight: bolder;
+              margin-left: 3px;
+            }
+          }
 
           .hours {
             -moz-border-top-right-radius: 3px;
@@ -246,7 +288,7 @@
 
   .window {
     width: 300px;
-    min-height: 300px;
+    min-height: 303px;
     background-color: #DDD;
     border: 3px outset #CCC;
     position: relative;

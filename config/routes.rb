@@ -10,6 +10,10 @@ Nexdocron::Application.routes.draw do
   end
 
   resources :hours, only: [ :index ], path: :time do
+    member do
+      delete 'delete_hour'
+    end
+
     collection do
       post 'get_hours_info'
       post 'update_week'

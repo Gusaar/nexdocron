@@ -12,10 +12,16 @@
           .day_number
             = label_tag(@week_days[i]) unless @week_days[i] == 0
         .body
-          - if week_hours
-            - week_hours.each do |ph|
-              %div{ class: "time_set_container_#{ph.id}" }
-                = render :partial => 'time_set', :locals => { :hour => ph }
+          - unless @project_id == "all" || @project_id.blank?
+            - if week_hours
+              - week_hours.each do |ph|
+                %div{ class: "time_set_container_#{ph.id}" }
+                  = render :partial => 'time_set', :locals => { :hour => ph }
+          - else
+            - if @week_all_hours[@week_days[i].to_s]
+              - @week_all_hours[@week_days[i].to_s].each do |ph|
+                %div{ class: "time_set_container_#{ph.id}" }
+                  = render :partial => 'time_set', :locals => { :hour => ph }
         - if @week_days[i] != 0
           .footer{ class: (footer_color_by_hours(wth, "#{@week_days[i]}/#{@date.month}/#{@date.year}") if @week_total_hours && !%w{ Sun Sa }.include?(day)) }
             %span

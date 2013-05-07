@@ -12,6 +12,10 @@ $(document).ready ->
       alert("You need to select a Project.")
 
   $('#project').change -> 
+    if $('#project').val() == 'all'
+      $('#add_task_button').hide()
+    else
+      $('#add_task_button').show()
     date = get_datepicker_date()
     update_week(date)
 
@@ -26,7 +30,7 @@ $(document).ready ->
         , 'script'
       $('.modal').hide()
 
-  $('#project').val("")
+  $('#project').val("all")
 
   $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy', onSelect: ((dateStr) -> update_week(dateStr))})
 
@@ -51,6 +55,16 @@ $(document).on 'click',
         clear_modal_errors()
         $('.modal').show()
       , 'json'
+
+$(document).on 'click',
+  '.close',
+  ->
+    self = this
+
+    $.ajax $(self).attr("href"),
+      type: 'DELETE',
+      dataType: 'script'
+    return false
 
 class update_week
   constructor: (date) ->

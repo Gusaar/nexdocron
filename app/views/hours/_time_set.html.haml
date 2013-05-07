@@ -1,4 +1,5 @@
 .time_set
+  = link_to content_tag(:span, "X"), delete_hour_hour_path(hour.id), :class => 'close', confirm: "Are you sure to delete this hour?"
   = hidden_field_tag :time_set_hour_id, hour.id, :class => 'time_set_hour_id'
   .hours{ style: "background-color: ##{hour.project.colour}" }
     %span.title

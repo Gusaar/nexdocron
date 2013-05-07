@@ -5,22 +5,23 @@ class HoursController < ApplicationController
     @date = Date.today
     @week_days = get_week_days(@date)
     @selected = @date.day
+
     get_month_hours(@projects, @date.beginning_of_month, @date.end_of_month)
     get_week_hours(@date, params[:project_id], @projects)
   end
 
   def update_week
     @date = Date.parse(params['date'])
-    
-    projects = current_user.projects
-    get_month_hours(projects, @date.beginning_of_month, @date.end_of_month)
-    get_week_hours(@date, params[:project_id], projects)
+    @project_id = params[:project_id]
+
+    load_default_variables
   end
 
   def update_hour
     @date = Date.parse(params['date'])
     @created = false
     if params[:project_id] && @project = Project.find_by_id(params[:project_id])
+      @project_id = params[:project_id]
       if params[:hour_id] && @hour = current_user.hours.find_by_id(params[:hour_id])
         @hour.update_attributes(:tasks_description => params[:description],
                                 :total_hours      => params[:hours])
@@ -31,9 +32,8 @@ class HoursController < ApplicationController
                                           :total_hours      => params[:hours],
                                           :date             => @date)
       end
-      projects = current_user.projects
-      get_month_hours(projects, @date.beginning_of_month, @date.end_of_month)
-      get_week_hours(@date, params[:project_id], projects)
+
+      load_default_variables
     end
   end
 
@@ -43,6 +43,17 @@ class HoursController < ApplicationController
     respond_to do |format|
       format.json { render :json => { hours: @hour.total_hours, description: @hour.tasks_description } }
     end
+  end
+
+  def delete_hour
+    @hour = Hour.find_by_id(params[:id])
+    @project_id = @hour.project_id
+    @date = Date.parse(@hour.date.strftime('%d-%m-%Y'))
+    @id = @hour.id
+
+    @hour.destroy
+
+    load_default_variables
   end
 
   private
@@ -60,6 +71,7 @@ class HoursController < ApplicationController
 
     @project_hours = []
     @week_total_hours = {}
+    @week_all_hours = {}
     projects.collect do |p|
       p.hours.where('date BETWEEN ? AND ?', range.first.beginning_of_day, range.last.end_of_day)
     end.flatten.each do |h|
@@ -69,6 +81,9 @@ class HoursController < ApplicationController
 
       @week_total_hours["#{h.date.day}"] ||= 0
       @week_total_hours["#{h.date.day}"] += h.total_hours
+
+      @week_all_hours["#{h.date.day}"] ||= []
+      @week_all_hours["#{h.date.day}"] << h
     end
   end
 
@@ -91,5 +106,11 @@ class HoursController < ApplicationController
     week_end = Date.commercial(date.cwyear, date.cweek, 7) - 1.day
 
     (week_start.. week_end).to_a
+  end
+
+  def load_default_variables
+    projects = current_user.projects
+    get_month_hours(projects, @date.beginning_of_month, @date.end_of_month)
+    get_week_hours(@date, @project_id, projects)
   end
 end
