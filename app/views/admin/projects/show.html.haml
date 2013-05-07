@@ -33,6 +33,11 @@
         = @project.client_id
       %p
         %b
+          = t("activerecord.attributes.admin_project.colour", :default => t("activerecord.labels.colour", :default => "Colour"))
+          \:
+        = @project.colour
+      %p
+        %b
           = t("activerecord.attributes.admin_project.invoicing_type_id", :default => t("activerecord.labels.invoicing_type_id", :default => "Invoicing type"))
           \:
         = @project.invoicing_type_id

@@ -1,6 +1,6 @@
 .time_set
   = hidden_field_tag :time_set_hour_id, hour.id, :class => 'time_set_hour_id'
-  .hours
+  .hours{ style: "background-color: ##{hour.project.colour}" }
     %span.title
       Hr
     %span.hour

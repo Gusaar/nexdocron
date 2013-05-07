@@ -1,45 +1,88 @@
-.left_controls {
-  background-color: #333;
-  color: #FFF;
-  padding: 10px;
-  width: 233px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
+.left_panel {
   float: left;
+  width: 235px;
+  margin-right: 20px;
 
-  select {
-    width: 188px;
-  }
+  .left_controls {
+    background-color: #333;
+    color: #FFF;
+    padding: 10px;
+    width: 233px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    float: left;
 
-  #datepicker {
-    margin-top: 20px;
-  }
+    select {
+      width: 188px;
+    }
 
-  .bottom {
-    .total_hours {
-      float:left;
+    #datepicker {
       margin-top: 20px;
+    }
+
+    .bottom {
+      .total_hours {
+        float:left;
+        margin-top: 20px;
+        font: {
+          size: 16px;
+          weight: bolder;
+        }
+
+        span.warning {
+          color: yellow;
+        }
+
+        span.good {
+          color: green;
+        }
+
+        span.over {
+          color: red;
+        }
+      }
+
+      #add_task_button {
+        margin-top: 20px;
+        float: right;
+      }
+    }
+  }
+
+  .left_legend {
+    float: left;
+    margin: 30px 0 0 50px;
+
+    .title {
+      display: block;
+      margin-bottom: 10px;
+      
       font: {
-        size: 16px;
+        size: 14px;
         weight: bolder;
-      }
-
-      span.warning {
-        color: yellow;
-      }
-
-      span.good {
-        color: green;
-      }
-
-      span.over {
-        color: red;
       }
     }
 
-    #add_task_button {
-      margin-top: 20px;
-      float: right;
+    .legend {
+      margin: 0 0 4px 10px;
+
+      span.name {
+        display: block;
+        float: left;
+        font: {
+          size: 12px;
+          weight: bolder;
+        }
+      }
+
+      span.colour {
+        border: 1px solid #000;
+        width: 12px;
+        height: 12px;
+        display: block;
+        float: left;
+        margin-right: 5px;
+      }
     }
   }
 }

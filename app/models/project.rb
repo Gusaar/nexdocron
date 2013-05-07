@@ -12,5 +12,13 @@ class Project < ActiveRecord::Base
   validates :total_hours, numericality: { greater_than: 0 }
   validates :client, presence: true
 
-  attr_accessible :client_id, :end_date, :invoicing_id, :name, :start_date, :total_hours, :invoicing_type_id, :client_id, :user_ids
+  attr_accessible :client_id, :end_date, :invoicing_id, :name, :start_date, :total_hours, :invoicing_type_id, :client_id, :user_ids, :colour
+
+  before_create :set_colour
+
+  private
+
+  def set_colour
+    self.colour = "%06x" % (rand * 0xffffff)
+  end
 end

@@ -1,16 +1,27 @@
-.left_controls
-  = label_tag :project, "Project: "
-  = select_tag :project, options_from_collection_for_select(current_user.projects, :id, :name), :prompt => "- Select a Project -"
+.left_panel
+  .left_controls
+    = label_tag :project, "Project: "
+    = select_tag :project, options_from_collection_for_select(current_user.projects, :id, :name), :prompt => "- Select a Project -"
 
-  #datepicker
+    #datepicker
 
-  .bottom
-    .total_hours
-      %span
-        Month Hours:
-      %span.month_hours{ class: month_color_by_hours(@month_hours, @month_total_hours) }
-        = @month_hours
-    = link_to 'Add Task', '#', :class => "button", :id => "add_task_button"
+    .bottom
+      .total_hours
+        %span
+          Month Hours:
+        %span.month_hours{ class: month_color_by_hours(@month_hours, @month_total_hours) }
+          = @month_hours
+      = link_to 'Add Task', '#', :class => "button", :id => "add_task_button"
+
+  .left_legend
+    %span.title
+      Project Colour Legend
+    - @projects.each do |p|
+      .legend
+        %span.colour{ style: "background-color: ##{p.colour}" }
+        %span.name
+          = p.name
+        .clear
 
 .right_panel
   = render partial: "calendar"

@@ -2,10 +2,11 @@ class HoursController < ApplicationController
 
   def index
     @projects = current_user.projects
-    date = Date.today
-    @week_days = get_week_days(date)
-    @selected = date.day
-    get_month_hours(@projects, date.beginning_of_month, date.end_of_month)
+    @date = Date.today
+    @week_days = get_week_days(@date)
+    @selected = @date.day
+    get_month_hours(@projects, @date.beginning_of_month, @date.end_of_month)
+    get_week_hours(@date, params[:project_id], @projects)
   end
 
   def update_week
