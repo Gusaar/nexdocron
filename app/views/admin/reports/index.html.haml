@@ -1,0 +1,52 @@
+.search_options
+  %ul
+    %li
+      %span
+        Project:
+      = select_tag :project, options_from_collection_for_select(@projects, :id, :name), prompt: ' - Select a Project - '
+    %li
+      %span
+        Start Date:
+      = date_select :project, :start_date, default: 1.month.ago
+    %li
+      %span
+        End Date:
+      = date_select :project, :end_date
+    %li
+      = link_to 'Generate', '#', :class => 'button'
+    .clear
+
+.data_table
+  .legend
+    %span
+      User
+  .headers
+    .header
+      Date
+    .header
+      Client
+    .header
+      Hours
+    .header
+      Description
+  .body
+    .row
+      .column
+        Test
+      .column
+        Test
+      .column
+        Test
+      .column
+        Test
+      .clear
+    .row
+      .column
+        Test
+      .column
+        Test
+      .column
+        Test
+      .column
+        Test
+      .clear
