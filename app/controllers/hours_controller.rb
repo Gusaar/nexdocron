@@ -6,8 +6,8 @@ class HoursController < ApplicationController
     @week_days = get_week_days(@date)
     @selected = @date.day
 
-    get_month_hours(@projects, @date.beginning_of_month, @date.end_of_month)
-    get_week_hours(@date, params[:project_id], @projects)
+    get_month_hours(@date.beginning_of_month, @date.end_of_month)
+    get_week_hours(@date, params[:project_id])
   end
 
   def update_week
@@ -58,23 +58,19 @@ class HoursController < ApplicationController
 
   private
 
-  def get_month_hours(projects, start_date, end_date)
-    @month_hours = projects.collect do |p|
-      p.hours.where('date BETWEEN ? AND ?', start_date.beginning_of_day, end_date.end_of_day).collect{|h| h.total_hours}
-    end.flatten.sum
+  def get_month_hours(start_date, end_date)
+    @month_hours = current_user.hours.where('date BETWEEN ? AND ?', start_date.beginning_of_day, end_date.end_of_day).collect{|h| h.total_hours}.sum
     @month_total_hours = (start_date..end_date).to_a.reject{ |d| d.saturday? || d.sunday? }.count * 8
   end
 
-  def get_week_hours(date, project_id, projects)
+  def get_week_hours(date, project_id)
     @week_days = get_week_days(date)
     range = get_range(date)
 
     @project_hours = []
     @week_total_hours = {}
     @week_all_hours = {}
-    projects.collect do |p|
-      p.hours.where('date BETWEEN ? AND ?', range.first.beginning_of_day, range.last.end_of_day)
-    end.flatten.each do |h|
+    current_user.hours.where('date BETWEEN ? AND ?', range.first.beginning_of_day, range.last.end_of_day).each do |h|
       if h.project.id == project_id.to_i
         @project_hours << h
       end
@@ -109,8 +105,7 @@ class HoursController < ApplicationController
   end
 
   def load_default_variables
-    projects = current_user.projects
-    get_month_hours(projects, @date.beginning_of_month, @date.end_of_month)
-    get_week_hours(@date, @project_id, projects)
+    get_month_hours(@date.beginning_of_month, @date.end_of_month)
+    get_week_hours(@date, @project_id)
   end
 end
