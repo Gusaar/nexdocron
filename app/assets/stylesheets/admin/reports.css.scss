@@ -16,7 +16,7 @@
       }
 
       .button {
-        margin-left: 50px;
+        margin-left: 40px;
         padding: 3px 10px;
       }
     }
@@ -74,13 +74,15 @@
       background-color: #DDD;
       border-left: 1px solid #333;
       border-right: 1px solid #333;
-      height: 26px;
+      border-top: 1px solid #333;
+      min-height: 26px;
 
       .column {
         float: left;
         padding: 5px;
         width: 23%;
         border-left: 1px solid #333;
+        min-height: 16px;
 
         &:first-child {
           border: 0;

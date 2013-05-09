@@ -13,40 +13,7 @@
         End Date:
       = date_select :project, :end_date
     %li
-      = link_to 'Generate', '#', :class => 'button'
+      = link_to 'Generate', '#', :class => 'button', id: 'generate_report'
     .clear
 
-.data_table
-  .legend
-    %span
-      User
-  .headers
-    .header
-      Date
-    .header
-      Client
-    .header
-      Hours
-    .header
-      Description
-  .body
-    .row
-      .column
-        Test
-      .column
-        Test
-      .column
-        Test
-      .column
-        Test
-      .clear
-    .row
-      .column
-        Test
-      .column
-        Test
-      .column
-        Test
-      .column
-        Test
-      .clear
+.tables

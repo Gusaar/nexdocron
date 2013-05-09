@@ -1,0 +1,18 @@
+%html
+  %head
+    = wicked_pdf_javascript_include_tag "jquery.js"
+    = wicked_pdf_stylesheet_link_tag "admin/reports.css"
+
+    :css
+      body {
+        color: rgb(17, 17, 17);
+        font-family: "MuseoSans500",helvetica,arial,sans-serif;
+        font-size: 12px;
+      }
+
+      .row {
+        overflow: hidden;
+      }
+
+  %body
+    = render partial: 'report.html.haml'

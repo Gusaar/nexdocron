@@ -1,0 +1,15 @@
+.data_table
+  .legend
+    %span
+      = user.full_name
+  .headers
+    .header
+      Date
+    .header
+      Client
+    .header
+      Hours
+    .header
+      Description
+  .body
+    = render partial: 'row.html.haml', collection: hours

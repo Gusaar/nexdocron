@@ -6,7 +6,12 @@ Nexdocron::Application.routes.draw do
   namespace :admin do
     resources :clients
     resources :projects
-    resources :reports, only: [ :index ]
+    resources :reports, only: [ :index ] do
+      collection do
+        post 'generate_report'
+        get 'pdf'
+      end
+    end
     resources :users
   end
 
