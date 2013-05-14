@@ -1,8 +1,6 @@
 Nexdocron::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
-  resources :dashboards, only: [ :index ]
-
   namespace :admin do
     resources :clients
     resources :projects
@@ -15,6 +13,8 @@ Nexdocron::Application.routes.draw do
     resources :users
   end
 
+  resources :admin, only: [ :index ]
+  resources :dashboards, only: [ :index ]
   resources :hours, only: [ :index ], path: :time do
     member do
       delete 'delete_hour'

@@ -1,3 +1,6 @@
-= link_to 'Download PDF', pdf_admin_reports_path(project_id: @project.id, start_date: @start_date.strftime('%d/%m/%Y'), end_date: @end_date.strftime('%d/%m/%Y'), format: :pdf), target: '_blank' if params[:action] == 'generate_report'
+- if params[:action] == 'generate_report'
+  .download_panel
+    = image_tag '/assets/pdf.png', height: '40', width: '40'
+    = link_to 'Download PDF', pdf_admin_reports_path(project_id: @project.id, start_date: @start_date.strftime('%d/%m/%Y'), end_date: @end_date.strftime('%d/%m/%Y'), format: :pdf), target: '_blank', :class => 'download_pdf' 
 - @report.each do |user, hours|
   = render partial: 'data_table.html.haml', locals: { hours: hours, user: user }

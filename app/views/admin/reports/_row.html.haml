@@ -1,9 +1,9 @@
 .row
-  .column
-    = row.user.full_name
+  .column.name
+    = row.project.client.name
   .column.date
     = row.date.strftime('%d/%m/%Y')
-  .column
+  .column.hours
     = row.total_hours
   .column.description
     = row.tasks_description
