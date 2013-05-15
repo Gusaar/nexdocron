@@ -13,7 +13,6 @@ Nexdocron::Application.routes.draw do
     resources :users
   end
 
-  resources :admin, only: [ :index ]
   resources :dashboards, only: [ :index ]
   resources :hours, only: [ :index ], path: :time do
     member do

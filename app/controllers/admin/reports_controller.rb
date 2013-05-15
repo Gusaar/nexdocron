@@ -1,4 +1,6 @@
 class Admin::ReportsController < AdminController
+  skip_load_and_authorize_resource
+  before_filter { authorize! :read, :reports }
 
   def index
     @projects = Project.all

@@ -1,4 +1,4 @@
 class AdminController < ApplicationController
-
-  def index;end
+  load_and_authorize_resource
+  
 end

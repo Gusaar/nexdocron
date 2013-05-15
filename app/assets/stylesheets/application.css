@@ -13,10 +13,45 @@
  *= require_tree .
  */
 
- .clear {
-  clear: both;
- }
+li#admin-menu {
+  width: 100px;
+  background-color: #333;
+  -moz-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  -moz-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
- .clear_left {
+li#admin-menu div {
+  padding-bottom: 10px;
+}
+
+li#admin-menu .title {
+  text-align: right;
+  margin-right: 10px;
+}
+
+li#admin-menu ul.submenu {
+  margin-top: 30px;
+  display: none;
+}
+
+li#admin-menu:hover ul.submenu {
+  display: block;
+}
+
+li#admin-menu ul.submenu li {
+  float: none;
+}
+
+li#admin-menu ul.submenu li a:hover {
+  color: #999;
+}
+
+.clear {
+  clear: both;
+}
+
+.clear_left {
   clear: left;
- }
+}

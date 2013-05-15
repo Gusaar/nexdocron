@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'cancan', '1.6.10'
 gem 'devise', '2.2.3'
 gem 'html2haml', '1.0.1'
 gem 'haml', '4.0.2'

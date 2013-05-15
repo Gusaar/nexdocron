@@ -14,6 +14,22 @@
       <h1><a href="/">Nexdocron</a></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
+          <% if can? :read, User %>
+            <li id="admin-menu">
+              <div>
+                <div class="title">
+                  Admin Panel
+                </div>
+
+                <ul class="submenu">
+                  <li><%= link_to 'Clients', admin_clients_path %></li>
+                  <li><%= link_to 'Projects', admin_projects_path %></li>
+                  <li><%= link_to 'Reports', admin_reports_path %></li>
+                  <li><%= link_to 'Users', admin_users_path %></li>
+                </ul>
+              </div>
+            </li>
+          <% end %>
           <li><a href="/users/logout" data-method="delete" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
         </ul>
       </div>
