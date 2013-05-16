@@ -3,11 +3,16 @@ Nexdocron::Application.routes.draw do
 
   namespace :admin do
     resources :clients
+    resources :invoices, only: [ :index ] do
+      collection do
+        get 'download'
+      end
+    end
     resources :projects
     resources :reports, only: [ :index ] do
       collection do
         post 'generate_report'
-        get 'pdf'
+        get 'download'
       end
     end
     resources :users

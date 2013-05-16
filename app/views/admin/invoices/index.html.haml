@@ -1,0 +1,26 @@
+= content_for :head do
+  :javascript
+    $(document).ready(function() {
+      $('#download_invoice').click(function() {
+        var self = this;
+        window.location.href = "#{ download_admin_invoices_path }.xls?start_date=" + get_invoice_date('start') + "&end_date=" + get_invoice_date('end');
+      });
+    });
+
+    function get_invoice_date(date_type) {
+      return $('#project_' + date_type + '_date_3i').val() + '/' + $('#project_' + date_type + '_date_2i').val() + '/' + $('#project_' + date_type + '_date_1i').val();
+    }
+
+.invoice_options
+  %ul
+    %li
+      %span
+        Start Date:
+      = date_select :project, :start_date, default: 1.month.ago, start_year: Time.now.year - 5, end_year: Time.now.year
+    %li
+      %span
+        End Date:
+      = date_select :project, :end_date, start_year: Time.now.year - 5, end_year: Time.now.year
+    %li
+      = link_to 'Download', '#', :class => 'button', id: 'download_invoice'
+    .clear

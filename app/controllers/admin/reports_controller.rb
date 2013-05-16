@@ -13,7 +13,7 @@ class Admin::ReportsController < AdminController
     @report = @project.hours.where('date BETWEEN ? AND ?', @start_date.beginning_of_day, @end_date.end_of_day).order('date DESC').group_by(&:user) 
   end
 
-  def pdf
+  def download
     generate_report
     
     respond_to do |format|

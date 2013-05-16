@@ -1,0 +1,6 @@
+<Row>
+  <Cell><Data ss:Type="String"><%= row.date.strftime('%d/%m/%Y') %></Data></Cell>
+  <Cell><Data ss:Type="String"><%= row.project.client.name %></Data></Cell>
+  <Cell><Data ss:Type="String"><%= row.project.name %></Data></Cell>
+  <Cell><Data ss:Type="Number"><%= row.total_hours %></Data></Cell>
+</Row>

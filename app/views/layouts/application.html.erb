@@ -6,6 +6,9 @@
   <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "http://code.jquery.com/ui/1.10.2/jquery-ui.js" %>
+
+  <%= yield :head %>
+
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -23,6 +26,7 @@
 
                 <ul class="submenu">
                   <li><%= link_to 'Clients', admin_clients_path %></li>
+                  <li><%= link_to 'Invoices', admin_invoices_path %></li>
                   <li><%= link_to 'Projects', admin_projects_path %></li>
                   <li><%= link_to 'Reports', admin_reports_path %></li>
                   <li><%= link_to 'Users', admin_users_path %></li>

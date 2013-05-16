@@ -7,11 +7,11 @@
     %li
       %span
         Start Date:
-      = date_select :project, :start_date, default: 1.month.ago
+      = date_select :project, :start_date, default: 1.month.ago, start_year: Time.now.year - 5, end_year: Time.now.year
     %li
       %span
         End Date:
-      = date_select :project, :end_date
+      = date_select :project, :end_date, start_year: Time.now.year - 5, end_year: Time.now.year
     %li
       = link_to 'Generate', '#', :class => 'button', id: 'generate_report'
     .clear
