@@ -1,0 +1,1 @@
+$('.users_with_missing_hours').html("<%= escape_javascript(render :partial => 'users_with_hours') %>");

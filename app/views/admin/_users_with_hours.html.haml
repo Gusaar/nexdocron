@@ -1,0 +1,9 @@
+- @users.each do |user, hours|
+  .wrapper
+    .user
+      = user.full_name
+    .hours
+      = hours
+      \/
+      = user.month_total_hours(@date)
+    .clear

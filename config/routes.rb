@@ -18,7 +18,11 @@ Nexdocron::Application.routes.draw do
     resources :users
   end
 
-  resources :dashboards, only: [ :index ]
+  resources :admin, only: [ :index ] do
+    collection do
+      post 'update_users_with_missing_hours'
+    end
+  end
   resources :hours, only: [ :index ], path: :time do
     member do
       delete 'delete_hour'

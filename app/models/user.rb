@@ -22,11 +22,25 @@ class User < ActiveRecord::Base
   validates :user_type, presence: true
   validates :rate, numericality: { greater_than: 0 }, allow_blank: true, allow_nil: true
 
+  class << self
+    def with_missing_hours_in_month(date)
+      users = {}
+      all.each do |user|
+        users[user] = user.hours.where('date BETWEEN ? AND ?', date.beginning_of_month, date.end_of_month).map(&:total_hours).sum.to_f
+      end 
+      users.reject{ |user, hours| hours >= user.month_total_hours(date) }
+    end
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
 
   def is_admin?
     user_type.name == "Admin"
+  end
+
+  def month_total_hours(date)
+     ((date.beginning_of_month..date.end_of_month).to_a.reject{ |d| d.saturday? || d.sunday? }.count * 8).to_f
   end
 end

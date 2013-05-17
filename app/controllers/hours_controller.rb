@@ -1,4 +1,5 @@
 class HoursController < ApplicationController
+  before_filter :check_role, only: [ :index ]
 
   def index
     @projects = current_user.projects
@@ -107,5 +108,11 @@ class HoursController < ApplicationController
   def load_default_variables
     get_month_hours(@date.beginning_of_month, @date.end_of_month)
     get_week_hours(@date, @project_id)
+  end
+
+  def check_role
+    if current_user.is_admin?
+      redirect_to admin_index_path
+    end
   end
 end

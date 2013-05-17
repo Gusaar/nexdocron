@@ -1,0 +1,49 @@
+.missing_time_panel {
+  background-color: #333;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 160px;
+  float: left;
+  margin-right: 20px;
+}
+
+.users_with_missing_hours {
+  float: left;
+  background-color: #333;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  width: 300px;
+  margin-bottom: 20px;
+
+  .wrapper {
+    background-color: #DDD;
+    margin: 5px 0;
+    padding: 5px;
+
+    &:first-child {
+      -moz-border-top-left-radius: 5px;
+      border-top-left-radius: 5px;
+      -moz-border-top-right-radius: 5px;
+      border-top-right-radius: 5px;
+      margin-top: 0;
+    }
+
+    &:last-child {
+      -moz-border-bottom-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      -moz-border-bottom-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      margin-bottom: 0;
+    }
+
+    .user {
+      float: left;
+    }
+
+    .hours {
+      float: right;
+    }
+  }
+}

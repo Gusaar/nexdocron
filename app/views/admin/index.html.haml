@@ -1,0 +1,10 @@
+%h2
+  Users With Missing Hours
+
+.missing_time_panel
+  = date_select :missing_time, :date, { discard_day: true, start_year: Time.now.year - 5, end_year: Time.now.year }, class: "missing_time_date"
+
+.users_with_missing_hours
+  = render :partial => 'users_with_hours'
+
+.clear
