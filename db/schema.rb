@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506151958) do
+ActiveRecord::Schema.define(:version => 20130524151213) do
 
   create_table "change_orders", :force => true do |t|
     t.decimal  "hours",      :precision => 5, :scale => 2
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(:version => 20130506151958) do
 
   add_index "clients", ["contact_name"], :name => "index_clients_on_contact_name"
   add_index "clients", ["name"], :name => "index_clients_on_name"
+
+  create_table "holy_day_lists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "holy_days", :force => true do |t|
+    t.date     "day"
+    t.integer  "holy_day_list_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "holy_days", ["holy_day_list_id"], :name => "index_holy_days_on_holy_day_list_id"
 
   create_table "hours", :force => true do |t|
     t.decimal  "total_hours",       :precision => 5, :scale => 2
@@ -112,10 +127,12 @@ ActiveRecord::Schema.define(:version => 20130506151958) do
     t.datetime "created_at",                                                           :null => false
     t.datetime "updated_at",                                                           :null => false
     t.integer  "user_type_id"
+    t.integer  "holy_day_list_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
+  add_index "users", ["holy_day_list_id"], :name => "index_users_on_holy_day_list_id"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["user_type_id"], :name => "index_users_on_user_type_id"

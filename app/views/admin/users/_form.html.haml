@@ -42,6 +42,9 @@
 .group
   = f.label :project_ids, t("activerecord.attributes.user.projects", :default => "Projects"), :class => :label
   = f.select :project_ids, options_from_collection_for_select(@projects, :id, :name, @user.project_ids), {}, { :multiple => true, :class => 'select' }
+.group
+  = f.label :holy_day_list_id, t("activerecord.attributes.user.holy_day_list", :default => "Holy Day List"), :class => :label
+  = f.select :holy_day_list_id, options_from_collection_for_select(@holy_day_lists, :id, :name, @user.holy_day_list_id), :class => 'select'
 .group.navform.wat-cf
   %button.button{:type => "submit"}
     = image_tag("web-app-theme/icons/tick.png", :alt => "#{t("web-app-theme.save", :default => "Save")}")

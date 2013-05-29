@@ -78,5 +78,6 @@ class Admin::UsersController < AdminController
   def init_variables
     @user_types = UserType.all
     @projects = Project.all
+    @holy_day_lists = HolyDayList.all
   end
 end

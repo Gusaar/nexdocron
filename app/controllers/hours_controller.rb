@@ -61,7 +61,10 @@ class HoursController < ApplicationController
 
   def get_month_hours(start_date, end_date)
     @month_hours = current_user.hours.where('date BETWEEN ? AND ?', start_date.beginning_of_day, end_date.end_of_day).collect{|h| h.total_hours}.sum
-    @month_total_hours = (start_date..end_date).to_a.reject{ |d| d.saturday? || d.sunday? }.count * 8
+    @holy_days = current_user.holy_day_list.nil? ? [] : current_user.holy_day_list.formatted_days
+    @month_total_hours = (start_date..end_date).to_a.reject do |d| 
+      d.saturday? || d.sunday? || @holy_days.include?(d.strftime('%d/%m/%Y'))
+    end.count * 8
   end
 
   def get_week_hours(date, project_id)

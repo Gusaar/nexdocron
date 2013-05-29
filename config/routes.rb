@@ -3,6 +3,17 @@ Nexdocron::Application.routes.draw do
 
   namespace :admin do
     resources :clients
+    resources :holy_days, only: [ :index ] do
+      collection do
+        post 'add_list'
+        post 'add_day'
+        post 'remove_day'
+      end
+
+      member do
+        get 'update_list'
+      end
+    end
     resources :invoices, only: [ :index ] do
       collection do
         get 'download'

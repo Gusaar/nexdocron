@@ -1,0 +1,15 @@
+.holy_day_list
+  .list
+    = select_tag :holy_day_list, options_from_collection_for_select(@holy_day_lists, :id, :name)
+  .new_list
+    = text_field_tag :new_list, '', class: 'new_holy_day_list'
+    = link_to 'Add List', '#', class: 'add_new_holy_day_list'
+  .clear
+
+.holy_days
+  = date_select :list, :date
+  = link_to 'Add', '#', class: 'add_holy_day'
+  .days_list
+    = render partial: 'day_list'
+
+.clear

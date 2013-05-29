@@ -1,0 +1,2 @@
+module Admin::HolyDaysHelper
+end

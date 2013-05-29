@@ -1,0 +1,92 @@
+.holy_day_list {
+  background-color: #333;
+  color: #DDD;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  float: left;
+
+  .list {
+    select {
+      width: 250px;
+    }
+  }
+
+  .new_list {
+    margin-top: 10px;
+
+    .new_holy_day_list {
+      width: 180px;
+    }
+
+    .add_new_holy_day_list {
+      text-decoration: none;
+      color: #DDD;
+      font-weight: bolder;
+      float: right;
+      margin: 3px 5px 0 0;
+    }
+  }
+}
+
+.holy_days {
+  float: left;
+  margin: 0 0 100px 100px;
+
+  .add_holy_day {
+    margin-left: 10px;
+    text-decoration: none;
+    padding: 5px;
+    background-color: #666;
+    color: #DDD;
+    font-weight: bolder;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+        
+    &:hover {
+      background-color: #DDD;
+      color: #666;
+    }
+  }
+
+  .days_list {
+    background-color: #333;
+    padding: 5px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-top: 30px;
+
+    .row {
+      margin: 5px 0;
+
+      span {
+        width: 110px;
+        display: block;
+        padding: 5px;
+        float: left;
+      }
+
+      span.month {
+        color: #DDD;
+        text-align: center;
+        font: {
+          size: 12px;
+          weight: bolder;
+        }
+      }
+
+      span.date {
+        background-color: #DDD;
+        text-align: center;
+      }
+
+      .remove_holy_day {
+        text-decoration: none;
+        margin: 4px 10px 0 10px;
+        color: #DDD;
+        display: block;
+        float: left;
+      }
+    }
+  }
+}

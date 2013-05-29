@@ -1,0 +1,1 @@
+$('.days_list').html("<%= escape_javascript(render :partial => 'day_list', locals: { days: @days }) %>");

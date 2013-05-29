@@ -1,0 +1,8 @@
+.row
+  %span.month
+    - if days.select{ |d| d.month == day_row.month && d.year == day_row.year }.first.strftime('%d/%m/%Y') == day_row.strftime('%d/%m/%Y')
+      = day_row.strftime("%B - %Y")
+  %span.date
+    = day_row.strftime('%d/%m/%Y')
+  = link_to 'remove', '#', class: 'remove_holy_day'
+  .clear
