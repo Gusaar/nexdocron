@@ -7,8 +7,9 @@
   .clear
 
 .holy_days
-  = date_select :list, :date
-  = link_to 'Add', '#', class: 'add_holy_day'
+  .day_select
+    = date_select :list, :date
+    = link_to 'Add', '#', class: 'add_holy_day'
   .days_list
     = render partial: 'day_list'
 

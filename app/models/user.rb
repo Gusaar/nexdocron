@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
   end
 
   def month_total_hours(date)
-     ((date.beginning_of_month..date.end_of_month).to_a.reject{ |d| d.saturday? || d.sunday? }.count * 8).to_f
+    @holy_days = self.holy_day_list.nil? ? [] : self.holy_day_list.formatted_days
+    ((date.beginning_of_month..date.end_of_month).to_a.reject do |d| 
+      d.saturday? || d.sunday? || @holy_days.include?(d.strftime('%d/%m/%Y'))
+    end.count * 8).to_f
   end
 end
