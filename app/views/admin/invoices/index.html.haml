@@ -1,18 +1,13 @@
-= content_for :head do
-  :javascript
-    $(document).ready(function() {
-      $('#download_invoice').click(function() {
-        var self = this;
-        window.location.href = "#{ download_admin_invoices_path }.xls?start_date=" + get_invoice_date('start') + "&end_date=" + get_invoice_date('end');
-      });
-    });
-
-    function get_invoice_date(date_type) {
-      return $('#project_' + date_type + '_date_3i').val() + '/' + $('#project_' + date_type + '_date_2i').val() + '/' + $('#project_' + date_type + '_date_1i').val();
-    }
-
 .invoice_options
   %ul
+    %li
+      %span
+        Report:
+      = select_tag :report_type, options_for_select([["Overall", 1], ["Per Client", 2]])
+    %li.invoice_client
+      %span
+        Client:
+      = select_tag :client_id, options_from_collection_for_select(@clients, :id, :name), id: 'invoice_client'
     %li
       %span
         Start Date:

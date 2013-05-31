@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  
+  <%= render partial: 'worksheet', collection: @users %>
+
+  <Worksheet ss:Name="Overall">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Developer</Data></Cell>
+        <Cell><Data ss:Type="String">Client</Data></Cell>
+        <Cell><Data ss:Type="String">Hours</Data></Cell>
+      </Row>
+    
+      <% @users.each do |user| %>
+        <% hours = get_invoice_total_hours_per_client(user) %>
+        <% hours.each do |client, hours| %>
+          <%= render partial: 'row_total', locals: { user: user, client: client, hours: hours.map(&:total_hours).sum } %>
+        <% end %>
+        <Row />
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

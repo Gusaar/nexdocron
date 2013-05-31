@@ -35,6 +35,7 @@ class get_holy_day_date
 
 class update_list
   constructor: () ->
-    $.get '/admin/holy_days/' + $('#holy_day_list').val() + '/update_list',
-      (->),
-      'script'
+    if typeof($('#holy_day_list').val()) != "undefined"
+      $.get '/admin/holy_days/' + $('#holy_day_list').val() + '/update_list',
+        (->),
+        'script'

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  
+  <Worksheet ss:Name="<%= @client.name %>">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Project</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String">Hours</Data></Cell>
+      </Row>
+    
+      <% grand_total = 0 %>
+      <% @client.projects.each do |project| %>
+        <% 
+          project_hours = get_project_hours(project) 
+          grand_total += project_hours.map(&:total_hours).sum
+        %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= project.name %></Data></Cell>
+          <Cell><Data ss:Type="String">Total</Data></Cell>
+          <Cell><Data ss:Type="Number"><%= project_hours.map(&:total_hours).sum %></Data></Cell>
+        </Row>
+
+        <% project_hours.group_by(&:user).each do |user, hours| %>
+          <Row>
+            <Cell><Data ss:Type="String"></Data></Cell>
+            <Cell><Data ss:Type="String"><%= user.full_name %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= hours.map(&:total_hours).sum %></Data></Cell>
+          </Row>
+        <% end %>
+      <% end %>
+
+      <Row>
+        <Cell><Data ss:Type="String">Grand Total</Data></Cell>
+        <Cell><Data ss:Type="String"></Data></Cell>
+        <Cell><Data ss:Type="String"><%= grand_total %></Data></Cell>
+      </Row>  
+    </Table>
+  </Worksheet>
+</Workbook>
