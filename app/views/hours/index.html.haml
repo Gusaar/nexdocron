@@ -1,7 +1,10 @@
 .left_panel
   .left_controls
     = label_tag :project, "Project: "
-    = select_tag :project, ('<option value="all">All Projects</option>' + options_from_collection_for_select(current_user.projects, :id, :name)).html_safe
+    - if current_user.projects.count > 1
+      = select_tag :project, ('<option value="all">All Projects</option>' + options_from_collection_for_select(current_user.projects, :id, :name)).html_safe
+    - else
+      = select_tag :project, options_from_collection_for_select(current_user.projects, :id, :name, current_user.projects.first.id), disabled: 'disabled'
 
     #datepicker
 

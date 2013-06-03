@@ -12,12 +12,7 @@ $(document).ready ->
       alert("You need to select a Project.")
 
   $('#project').change -> 
-    if $('#project').val() == 'all'
-      $('#add_task_button').hide()
-    else
-      $('#add_task_button').show()
-    date = get_datepicker_date()
-    update_week(date)
+    check_project()
 
   $('.modal .cancel_button').click ->
     $('.modal').hide()
@@ -30,9 +25,10 @@ $(document).ready ->
         , 'script'
       $('.modal').hide()
 
-  $('#project').val("all")
-
   $('#datepicker').datepicker({ dateFormat: 'dd/mm/yy', onSelect: ((dateStr) -> update_week(dateStr))})
+
+  $('#project').val("all")
+  check_project()
 
   $('.calendar ul li').each (index) ->
     self = this
@@ -121,3 +117,12 @@ class clear_modal_errors
     $('.modal .description div.errors').html("")
     $('.modal #hours').removeClass("error")
     $('.modal .hours div.errors').html("")
+
+class check_project
+  constructor: ->
+    if $('#project').val() == 'all'
+      $('#add_task_button').hide()
+    else
+      $('#add_task_button').show()
+    date = get_datepicker_date()
+    update_week(date)
