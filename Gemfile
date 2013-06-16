@@ -6,6 +6,7 @@ gem 'cancan', '1.6.10'
 gem 'devise', '2.2.3'
 gem 'html2haml', '1.0.1'
 gem 'haml', '4.0.2'
+gem 'heroku'
 gem 'jquery-rails', '2.2.1'
 gem 'mysql2', '0.3.11'
 gem "rspec-rails", '2.13.0', :group => [:test, :development]
