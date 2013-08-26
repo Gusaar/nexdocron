@@ -20,7 +20,6 @@
         <% hours.each do |client, hours| %>
           <%= render partial: 'row_total', locals: { user: user, client: client, hours: hours.map(&:total_hours).sum } %>
         <% end %>
-        <Row />
       <% end %>
     </Table>
   </Worksheet>
