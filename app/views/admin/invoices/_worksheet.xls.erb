@@ -1,7 +1,7 @@
 <Worksheet ss:Name="<%= worksheet.full_name %>">
   <Table>
     <Row>
-      <Cell><Data ss:Type="Date">Date</Data></Cell>
+      <Cell><Data ss:Type="String">Date</Data></Cell>
       <Cell><Data ss:Type="String">Client</Data></Cell>
       <Cell><Data ss:Type="String">Project</Data></Cell>
       <Cell><Data ss:Type="String">Hours</Data></Cell>
@@ -10,7 +10,6 @@
     <% hours = get_invoice_hours(worksheet).group_by(&:project) %>
     <% hours.each do |project, hours| %>
       <%= render partial: 'row', collection: hours %>
-      <Row />
     <% end %>
   </Table>
 </Worksheet>

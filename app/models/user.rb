@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :skype_id, :phone, :mobile, :rate, :project_ids, :holy_day_list_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :skype_id, :phone, :mobile, :rate, :project_ids, :holy_day_list_id, :user_type_id
 
   validates :username, :uniqueness => { :allow_blank => true, :allow_nil => true }
   validates :first_name, presence: true
