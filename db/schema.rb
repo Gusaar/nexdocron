@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130524151213) do
+ActiveRecord::Schema.define(:version => 20131227163633) do
 
   create_table "change_orders", :force => true do |t|
     t.decimal  "hours",      :precision => 5, :scale => 2
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130524151213) do
     t.datetime "updated_at",                                                           :null => false
     t.integer  "user_type_id"
     t.integer  "holy_day_list_id"
+    t.integer  "default_project"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

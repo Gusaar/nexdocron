@@ -1,4 +1,4 @@
-- @users.each do |user, hours|
+- @users.reject{|u| u.is_admin?}.each do |user, hours|
   .wrapper
     .user
       = user.full_name

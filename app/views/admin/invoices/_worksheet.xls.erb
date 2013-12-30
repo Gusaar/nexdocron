@@ -5,6 +5,7 @@
       <Cell><Data ss:Type="String">Client</Data></Cell>
       <Cell><Data ss:Type="String">Project</Data></Cell>
       <Cell><Data ss:Type="String">Hours</Data></Cell>
+      <Cell><Data ss:Type="String">Description</Data></Cell>
     </Row>
   
     <% hours = get_invoice_hours(worksheet).group_by(&:project) %>

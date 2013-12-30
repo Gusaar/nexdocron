@@ -40,8 +40,11 @@
   = f.text_field :rate, :class => 'text_field'
   %span.description Ex: 100.00
 .group
+  = f.label :default_project, t("activerecord.attributes.user.default_project", :default => "Default Project"), class: :label
+  = f.select :default_project, [], {}, { class: 'select default_project' }
+.group
   = f.label :project_ids, t("activerecord.attributes.user.projects", :default => "Projects"), :class => :label
-  = f.select :project_ids, options_from_collection_for_select(@projects, :id, :name, @user.project_ids), {}, { :multiple => true, :class => 'select' }
+  = f.select :project_ids, options_from_collection_for_select(@projects, :id, :name, @user.project_ids), {}, { :multiple => true, :class => 'select projects' }
 .group
   = f.label :holy_day_list_id, t("activerecord.attributes.user.holy_day_list", :default => "Holy Day List"), :class => :label
   = f.select :holy_day_list_id, options_from_collection_for_select(@holy_day_lists, :id, :name, @user.holy_day_list_id), :class => 'select'
@@ -51,3 +54,17 @@
     = t("web-app-theme.save", :default => "Save")
   %span.text_button_padding= t("web-app-theme.or", :default => "or")
   = link_to t("web-app-theme.cancel", :default => "Cancel"), admin_users_path, :class => "text_button_padding link_button"
+
+
+:javascript
+  $('.projects').change(function() {
+    $('.default_project')
+      .find('option')
+      .remove()
+      .end()
+    $('.projects :selected').each(function(i, selected){ 
+      $('.default_project')
+        .append('<option value="' + $(selected).val() + '">' + $(selected).text() + '</option>')
+    });
+    $(".default_project option[value=" + #{@user.default_project} + "]").attr("selected", true);
+  });

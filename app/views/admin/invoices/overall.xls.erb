@@ -15,7 +15,7 @@
         <Cell><Data ss:Type="String">Hours</Data></Cell>
       </Row>
     
-      <% @users.each do |user| %>
+      <% @users.reject{|u| u.is_admin?}.each do |user| %>
         <% hours = get_invoice_total_hours_per_client(user) %>
         <% hours.each do |client, hours| %>
           <%= render partial: 'row_total', locals: { user: user, client: client, hours: hours.map(&:total_hours).sum } %>
